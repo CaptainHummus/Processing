@@ -1,4 +1,4 @@
-//assignment 2 - Parabolic Curve
+// Assignment 2 - Parabolic Curve
 int lineCounter = 0;
 int lineSpacing = 15;
 
