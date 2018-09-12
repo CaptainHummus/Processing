@@ -10,9 +10,10 @@ void setup()
 void draw()
 {
   background(255, 150, 150);
-  parabol();
+  paraboleGen();
+  test();
 }
-void parabol()
+void paraboleGen()
 {
   strokeWeight(3);
 
@@ -27,4 +28,21 @@ void parabol()
     line(0, i + lineSpacing, width - i - lineSpacing, 0);
     lineCounter++;
   }
+}
+
+void test()
+{
+  parabol a = new parabol();
+
+  a.position = 0;
+  a.axis1 = 480;
+  a.axis2 = 480;
+  a.numberOfLines = 
+}
+
+class parabol {
+  int position;
+  int axis1;
+  int axis2;
+  int numberOfLines;
 }
