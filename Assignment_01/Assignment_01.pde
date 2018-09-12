@@ -2,6 +2,7 @@
 int underlineX = 100;
 int scanLineDistance = 10;
 int frames = 0;
+int scanLean = 200;
 
 void setup()
 {
@@ -57,11 +58,16 @@ void draw()
       underlineX = underlineX - 5;
     //noLoop();
   }
-  // Animated Scanlines - stolen from the class
-  for (int i = 0; i < height; i = i + scanLineDistance) {
-    stroke(128, 128, 128, 100);
+  // Animated Scanline grid - modified from the class
+  for (int i = 0; i < height + scanLean; i = i + scanLineDistance) {
+    stroke(70, 0, 0, 100);
     strokeWeight(2);
-    line(0, i + frames % scanLineDistance, width, i + frames % scanLineDistance);
+    line(0, i + frames % scanLineDistance, width, i + frames % scanLineDistance - scanLean);
+  }
+    for (int i = 0; i < height + scanLean; i = i + scanLineDistance) {
+    stroke(70, 0, 0, 100);
+    strokeWeight(2);
+    line(0, i + frames % scanLineDistance - scanLean, width, i + frames % scanLineDistance);
   }
   frames++;
 }

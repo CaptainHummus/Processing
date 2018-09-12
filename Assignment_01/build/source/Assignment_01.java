@@ -18,6 +18,7 @@ public class Assignment_01 extends PApplet {
 int underlineX = 100;
 int scanLineDistance = 10;
 int frames = 0;
+int scanLean = 200;
 
 public void setup()
 {
@@ -74,10 +75,10 @@ public void draw()
     //noLoop();
   }
   // Animated Scanlines - stolen from the class
-  for (int i = 0; i < height; i = i + scanLineDistance) {
+  for (int i = 0; i < height + scanLean; i = i + scanLineDistance) {
     stroke(128, 128, 128, 100);
     strokeWeight(2);
-    line(0, i + frames % scanLineDistance, width, i + frames % scanLineDistance);
+    line(0, i + frames % scanLineDistance, width, i + frames % scanLineDistance - scanLean);
   }
   frames++;
 }
