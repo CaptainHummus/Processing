@@ -1,0 +1,9 @@
+void setup()
+{
+  size(480,480,renderer);
+}
+
+void draw()
+{
+  background(255,150,150);
+}
