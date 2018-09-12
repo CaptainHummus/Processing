@@ -34,10 +34,10 @@ void test()
 {
   parabol a = new parabol();
 
-  a.position = 0;
-  a.axis1 = 480;
-  a.axis2 = 480;
-  a.numberOfLines = 
+  a.position = ;
+  a.axis1 = 300;
+  a.axis2 = 300;
+  a.numberOfLines = 40;
 }
 
 class parabol {
