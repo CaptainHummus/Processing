@@ -1,9 +1,7 @@
-int cordX = 0;
-int cordY = 0;
-
+int lineCounter = 0;
 void setup()
 {
-  size(1000, 1000);
+  size(720, 720);
 }
 void draw()
 {
@@ -13,9 +11,14 @@ void draw()
 void parabol()
 {
   strokeWeight(3);
-  stroke(0);
 
-  for(int i = 1; i < width; i = i + 10) {
+  for(int i = 0; i < width; i = i + 15) {
+    stroke(50, 50, 50);
+    if (lineCounter % 3 == 0) {
+      stroke(0);
+    }
     line(1, i, width - i , 1);
+    lineCounter++;
+
   }
 }

@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class Assignment_02 extends PApplet {
 
+int lineCounter = 0;
 public void setup()
 {
   
@@ -25,14 +26,19 @@ public void draw()
 }
 public void parabol()
 {
-  strokeWeight(5);
-  stroke(0);
+  strokeWeight(3);
 
-  for(int i = 1; i < width; i = i + 10) {
-    line(i, width - i,width - i, i);
+  for(int i = 0; i < width; i = i + 15) {
+    stroke(50, 50, 50);
+    if (lineCounter % 3 == 0) {
+      stroke(0);
+    }
+    line(1, i, width - i , 1);
+    lineCounter++;
+
   }
 }
-  public void settings() {  size(480, 480); }
+  public void settings() {  size(720, 720); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Assignment_02" };
     if (passedArgs != null) {
