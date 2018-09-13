@@ -1,3 +1,4 @@
+// Assignment 3 - Trigonometry and animated sinus curves
 int frame = 0;
 float mutliplier = 0.04;
 int numberOfPoints = 100;
