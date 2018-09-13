@@ -14,12 +14,15 @@ import java.io.IOException;
 
 public class Assignment_02 extends PApplet {
 
+// Assignment 2 - Parabolic Curve
 int lineCounter = 0;
 int lineSpacing = 15;
+
 public void setup()
 {
   
 }
+
 public void draw()
 {
   background(255, 150, 150);
