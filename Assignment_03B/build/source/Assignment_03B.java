@@ -18,22 +18,22 @@ int frame = 0;
 float speedMultiplier1 = 0.5f;
 float speedMultiplier2 = 0.01f;
 float speedMultiplier3 = 0.49f;
-int numberOfPoints = 100;
-int scale = 350;
+int numberOfPoints = 1000;
+int scale = 535;
 float evenDivide =TWO_PI /numberOfPoints;
 
 
 public void setup()
 {
-  //background(0);
-  
+  background(0);
+  //size (720, 720);
   strokeWeight(8);
-  //fullScreen();
+  
 }
 
 public void draw()
 {
-  background(0);
+  //background(0);
   circle();
   sineWave();
   cosWave();
@@ -92,7 +92,7 @@ public void colorGetter(float speedMultiplier, int i)
 
   stroke(colorR, colorG, colorB);
 }
-  public void settings() {  size (720, 720); }
+  public void settings() {  fullScreen(); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Assignment_03B" };
     if (passedArgs != null) {
