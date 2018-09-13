@@ -17,46 +17,82 @@ public class Assignment_03B extends PApplet {
 int frame = 0;
 float speedMultiplier1 = 0.5f;
 float speedMultiplier2 = 0.01f;
+float speedMultiplier3 = 0.49f;
 int numberOfPoints = 100;
-int scale = 300;
+int scale = 360;
+float evenDivide =TWO_PI /numberOfPoints;
 
 
 public void setup()
 {
-
-strokeWeight(8);
+  background(0);
+  
+  strokeWeight(8);
+  //fullScreen();
 }
 
 public void draw()
 {
-  background(120,120,255);
-  stroke(0);
-
-  for(int i = 0; i < numberOfPoints; i++) {
-    stroke(0,0,sin((TWO_PI * i/numberOfPoints) + (frame *speedMultiplier1) )*255);
-    float x = (width/2 + sin(TWO_PI *i /numberOfPoints + frame *0.5f )* scale);
-    float y = (height/2 + cos(TWO_PI*i /numberOfPoints + frame * 0.5f ) * scale);
-    point(x, y);
-  }
-
-  for(int i = 0; i < numberOfPoints; i++) {
-    stroke(i,i,i);
-    float x = (i * 8);
-    float y = (height/2 + sin((i*0.08f) + frame * 0.01f) * scale);
-    point(x, y);
-  }
-
-  for(int i = 0; i < 1000; i++) {
-    stroke(0,sin(2*PI /(frame*100))*255,0);
-    float x = (i * 8);
-    float y = (height/2 + cos((i) + frame * 0.01f) * scale/2);
-    point(x, y);
-  }
-
+  background(0);
+  circle();
+  sineWave();
+  cosWave();
+  tube();
   frame++;
 }
-  public void settings() { 
-size (720, 720); }
+
+public void circle()
+{
+
+  for(int i = 0; i < numberOfPoints; i++) {
+    float x = (width/2 + sin(evenDivide * i + frame *speedMultiplier1 )* scale);
+    float y = (height/2 + cos(evenDivide * i + frame * speedMultiplier1 ) * scale);
+
+    colorGetter(speedMultiplier3, i);
+    point(x, y);
+  }
+}
+
+public void sineWave()
+{
+  for(int i = 0; i < numberOfPoints; i++) {
+    float x = (i * 8);
+    float y = (height/2 + sin((i*0.08f) + frame * speedMultiplier2) * scale);
+    colorGetter(speedMultiplier2, i);
+    point(x, y);
+  }
+}
+
+public void cosWave()
+{
+  for(int i = 0; i < numberOfPoints; i++) {
+    float x = (i * 8);
+    float y = (height/2 + cos((i*0.08f) + frame * speedMultiplier2) * scale);
+    colorGetter(-speedMultiplier2, i);
+    point(x, y);
+  }
+}
+
+public void tube()
+{
+  for(int i = 0; i < 1000; i++) {
+
+    float x = (i * 8);
+    float y = (height/2 + sin((i) + frame * speedMultiplier2) * scale/2);
+    colorGetter(speedMultiplier2, i);
+    point(x, y);
+  }
+}
+
+public void colorGetter(float speedMultiplier, int i)
+{
+  float colorR = -(sin((evenDivide * i) + (frame *speedMultiplier) )*255);
+  float colorG = (cos((evenDivide * i) + (frame *speedMultiplier) )*255);
+  float colorB = (sin((evenDivide * i) + (frame *speedMultiplier) )*255);
+
+  stroke(colorR, colorG, colorB);
+}
+  public void settings() {  size (720, 720); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Assignment_03B" };
     if (passedArgs != null) {
