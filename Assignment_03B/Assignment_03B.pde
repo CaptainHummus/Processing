@@ -3,13 +3,13 @@ float speedMultiplier1 = 0.5;
 float speedMultiplier2 = 0.01;
 float speedMultiplier3 = 0.49;
 int numberOfPoints = 100;
-int scale = 360;
+int scale = 350;
 float evenDivide =TWO_PI /numberOfPoints;
 
 
 void setup()
 {
-  background(0);
+  //background(0);
   size (720, 720);
   strokeWeight(8);
   //fullScreen();

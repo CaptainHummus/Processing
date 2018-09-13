@@ -19,13 +19,13 @@ float speedMultiplier1 = 0.5f;
 float speedMultiplier2 = 0.01f;
 float speedMultiplier3 = 0.49f;
 int numberOfPoints = 100;
-int scale = 360;
+int scale = 350;
 float evenDivide =TWO_PI /numberOfPoints;
 
 
 public void setup()
 {
-  background(0);
+  //background(0);
   
   strokeWeight(8);
   //fullScreen();
