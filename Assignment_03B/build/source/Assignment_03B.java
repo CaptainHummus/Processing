@@ -15,9 +15,11 @@ import java.io.IOException;
 public class Assignment_03B extends PApplet {
 
 int frame = 0;
-float mutliplier = 0.04f;
+float speedMultiplier1 = 0.5f;
+float speedMultiplier2 = 0.01f;
 int numberOfPoints = 100;
 int scale = 300;
+
 
 public void setup()
 {
@@ -31,17 +33,24 @@ public void draw()
   stroke(0);
 
   for(int i = 0; i < numberOfPoints; i++) {
-    point(width/2 + sin(2*PI *i /numberOfPoints + frame *0.5f )* scale, height/2 + cos(2*PI*i /numberOfPoints + frame * 0.5f ) * scale );
+    stroke(0,0,sin((TWO_PI * i/numberOfPoints) + (frame *speedMultiplier1) )*255);
+    float x = (width/2 + sin(TWO_PI *i /numberOfPoints + frame *0.5f )* scale);
+    float y = (height/2 + cos(TWO_PI*i /numberOfPoints + frame * 0.5f ) * scale);
+    point(x, y);
   }
 
   for(int i = 0; i < numberOfPoints; i++) {
     stroke(i,i,i);
-    point(i * 8, height/2 + sin((i*0.08f) + frame * 0.01f) * scale );
+    float x = (i * 8);
+    float y = (height/2 + sin((i*0.08f) + frame * 0.01f) * scale);
+    point(x, y);
   }
 
   for(int i = 0; i < 1000; i++) {
     stroke(0,sin(2*PI /(frame*100))*255,0);
-    point(i * 8, height/2 + cos((i) + frame * 0.01f) * scale/2 );
+    float x = (i * 8);
+    float y = (height/2 + cos((i) + frame * 0.01f) * scale/2);
+    point(x, y);
   }
 
   frame++;
