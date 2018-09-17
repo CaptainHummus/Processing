@@ -11,6 +11,7 @@ void draw()
 {
   background(255, 150, 150);
   paraboleGen();
+  test();
 }
 void paraboleGen()
 {
@@ -27,4 +28,21 @@ void paraboleGen()
     line(0, i + lineSpacing, width - i - lineSpacing, 0);
     lineCounter++;
   }
+}
+
+void test()
+{
+  parabol a = new parabol();
+
+  a.position = ;
+  a.axis1 = 300;
+  a.axis2 = 300;
+  a.numberOfLines = 40;
+}
+
+class parabol {
+  int position;
+  int axis1;
+  int axis2;
+  int numberOfLines;
 }
