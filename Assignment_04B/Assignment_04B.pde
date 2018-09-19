@@ -34,9 +34,9 @@ void textPrinter()
   text(str1, textPosX, textPosY);
 }
 
-void mouseReleased()
-{
-  PlayerVector = new PVector(mouseX, mouseY);
-
-
-}
+// void mouseReleased()
+// {
+//   PlayerVector = new PVector(mouseX, mouseY);
+//
+//
+// }

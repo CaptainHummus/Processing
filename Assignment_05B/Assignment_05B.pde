@@ -1,10 +1,12 @@
-int n = 1000;
-Ball[] balls = new Ball[n];
-//Ball b;
-
-float frameTime;   //time for draw method
 int time;
-float a = 200;
+int n = 50;
+int dY;
+float frameTime;
+float a = 300;
+float force = 800;
+float friction = 0.9;
+
+Ball[] balls = new Ball[n];
 
 void setup()
 {
@@ -12,7 +14,6 @@ void setup()
   for(int i = 0; i < n; i++) {
     balls[i] = new Ball();
   }
-  //b = new Ball();
   frameRate(60);
 }
 
@@ -29,6 +30,7 @@ void draw()
     ball.bounce();
     ball.display();
   }
+  //Another way to write the for loop
 //   for(Ball ball : balls){
 //   ball.move();
 //   ball.bounce();
@@ -48,7 +50,7 @@ class Ball
 
   Ball(){
     pos = new PVector(width/2, height/2);
-    velDir = new PVector(random(-500,500),random(-500,500));
+    velDir = new PVector(random(-force,force),random(-force,force));
     r = random(255);
     g = random(255);
     b = random(255);
@@ -61,10 +63,10 @@ class Ball
   }
 
   void bounce(){
-    if(pos.y > height || pos.y < 0){
-      velDir.y = -(velDir.y  * 0.9);
-      pos.y = height;
-      velDir.x *= 0.9;
+    float dY = (velDir.y * frameTime);
+    if(pos.y + dY > height || pos.y + dY < 0){
+      velDir.y = -(velDir.y  * friction);
+      velDir.x *= friction;
     }
     if(pos.x > width){
       pos.x = 0;
