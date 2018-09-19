@@ -13,8 +13,9 @@ void draw()
   background(120,255,120);
   strokeWeight(5);
   textPrinter();
+  line(0,height, PlayerVector.x, PlayerVector.y);
 
-
+// cordinate system with 50 px spacing for easy vector drawing
   for (int i = 0; i < width/10; i++){
     for (int j = 0; j < width/10; j++){
       point (i *50,(height - j*50));
@@ -35,5 +36,7 @@ void textPrinter()
 
 void mouseReleased()
 {
+  PlayerVector = new PVector(mouseX, mouseY);
+
 
 }
