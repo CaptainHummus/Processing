@@ -23,11 +23,17 @@ void draw()
 
 }
 
-void textPrinter(){
+void textPrinter()
+{
   textSize(16);
   fill(0,0,0);
   String str1 =("Draw a vector with the cordinates:" + round(GenVector.x) + ", " + round(GenVector.y));
   float textPosX = width/2 - textWidth(str1)/2 ;
   float textPosY = height/2;
   text(str1, textPosX, textPosY);
+}
+
+void mouseReleased()
+{
+
 }

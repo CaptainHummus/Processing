@@ -18,7 +18,6 @@ void draw() {
   MCDir.normalize();
   BDir.normalize();
 
-
   if(Bouncer.x > width || Bouncer.x < 0){
     BDir.x = BDir.x * -1;
   }
