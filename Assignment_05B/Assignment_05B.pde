@@ -1,18 +1,18 @@
-// int n = 1;
-// Ball[] balls = new Ball[n];
-Ball b;
+int n = 1000;
+Ball[] balls = new Ball[n];
+//Ball b;
 
 float frameTime;   //time for draw method
 int time;
-float a = 500;
+float a = 200;
 
 void setup()
 {
-  size(480,480);
-  // for(int i = 0; i < n; i++) {
-  //   balls[i] = new Ball();
-  // }
-  b = new Ball();
+  size(720,720);
+  for(int i = 0; i < n; i++) {
+    balls[i] = new Ball();
+  }
+  //b = new Ball();
   frameRate(60);
 }
 
@@ -22,10 +22,18 @@ void draw()
   frameTime = currentTime - time;
   frameTime = frameTime * 0.001f;
 
-  background(255);
-  b.move();
-  b.bounce();
-  b.display();
+  background(0);
+  for(int i = 0; i < balls.length; i++){
+    Ball ball = balls[i];
+    ball.move();
+    ball.bounce();
+    ball.display();
+  }
+//   for(Ball ball : balls){
+//   ball.move();
+//   ball.bounce();
+//   ball.display();
+// }
 
   time = currentTime;
 }
@@ -34,10 +42,16 @@ class Ball
 {
   PVector pos;
   PVector velDir;
+  float r;
+  float g;
+  float b;
 
   Ball(){
     pos = new PVector(width/2, height/2);
-    velDir = new PVector(random(-1000, 1000), random(-1000,1000));
+    velDir = new PVector(random(-500,500),random(-500,500));
+    r = random(255);
+    g = random(255);
+    b = random(255);
   }
 
   void move(){
@@ -48,7 +62,9 @@ class Ball
 
   void bounce(){
     if(pos.y > height || pos.y < 0){
-      velDir.y = velDir.y  * -1;
+      velDir.y = -(velDir.y  * 0.9);
+      pos.y = height;
+      velDir.x *= 0.9;
     }
     if(pos.x > width){
       pos.x = 0;
@@ -61,7 +77,7 @@ class Ball
   void display(){
     stroke(0);
     strokeWeight(2);
-    fill(128);
+    fill(r, g, b);
     ellipse(pos.x, pos.y, 20,20);
   }
 
