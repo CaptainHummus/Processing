@@ -55,7 +55,6 @@ void draw()
   if(underlineX > 612)
   {
       underlineX = underlineX - 5;
-    //noLoop();
   }
   // Animated Scanline grid - modified from the class
   for (int i = 0; i < height + scanLean; i = i + scanLineDistance) {
