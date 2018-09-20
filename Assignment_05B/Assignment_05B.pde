@@ -24,12 +24,18 @@ void draw()
   frameTime = frameTime * 0.001f;
 
   background(0);
-  for(int i = 0; i < balls.length; i++){
-    Ball ball = balls[i];
-    ball.move();
-    ball.bounce();
-    ball.display();
+  for(int i = 0; i < n; i++) {
+    balls[i].move();
+    balls[i].bounce();
+    balls[i].display();
   }
+  /// more ways to draw for loops with the same effect
+  // for(int i = 0; i < balls.length; i++){
+  //   Ball ball = balls[i];
+  //   ball.move();
+  //   ball.bounce();
+  //   ball.display();
+  // }
   //Another way to write the for loop
 //   for(Ball ball : balls){
 //   ball.move();
