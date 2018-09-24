@@ -1,6 +1,6 @@
 int spawnCount = 30;
 CharacterManager god;
-int speedLimit = 3;
+int speedLimit = 1;
 
 void setup(){
  size (720,720);

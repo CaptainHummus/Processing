@@ -15,7 +15,7 @@ class CharacterManager {
   void update(){
     for(int i = 0; i < spawnCount; i++){
       if(livingBoiz[i].zombie == 1){
-        for(int j = i + 1; j < spawnCount; j++){
+        for(int j = 0; j < spawnCount; j++){
           if(livingBoiz[j].size == 0 || livingBoiz[j].zombie == 1 ){
             continue;
           }
