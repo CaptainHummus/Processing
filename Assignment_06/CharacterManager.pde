@@ -6,6 +6,7 @@ class CharacterManager {
     for(int i = 0; i < spawnCount; i++){
       if (i == 0){
         livingBoiz[i] = new Zombie();
+        zombieCount++;
       }
       else{
         livingBoiz[i] = new Human();
@@ -24,7 +25,7 @@ class CharacterManager {
           if(hasCollided){
             livingBoiz[j].size = 0;
             livingBoiz[j] = new Zombie(livingBoiz[j]);
-            println("collision!");
+            zombieCount++;
           }
         }
       }

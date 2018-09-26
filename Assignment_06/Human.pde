@@ -1,8 +1,12 @@
 class Human{
   PVector pos;
   PVector velDir;
-  int size = 40;
+  int size = 15 + (int) random(5);
   int zombie = 0;
+  int randomNumber = (int) random(100);
+  int r = 155 + randomNumber;
+  int g = 124 + randomNumber;
+  int b = 89 + randomNumber;
 
   Human(){
     pos = new PVector();
@@ -36,7 +40,8 @@ class Human{
   }
 
   void display(){
-    fill(255,224,189);
+    strokeWeight(0);
+    fill(r,g,b);
     ellipse(pos.x,pos.y,size,size);
   }
 }
