@@ -1,12 +1,14 @@
 int time;
-int n = 50;
+int n = 70;
 int dY;
 float frameTime;
 float a = 300;
-float force = 800;
+float force = 500;
 float friction = 0.9;
 
 Ball[] balls = new Ball[n];
+
+Planet moon;
 
 void setup()
 {
@@ -14,6 +16,7 @@ void setup()
   for(int i = 0; i < n; i++) {
     balls[i] = new Ball();
   }
+  moon = new Planet();
   frameRate(60);
 }
 
@@ -25,9 +28,11 @@ void draw()
 
   background(0);
   for(int i = 0; i < n; i++) {
-    balls[i].move();
+    balls[i].move(moon);
     balls[i].bounce();
     balls[i].display();
+    moon.move();
+    moon.display();
   }
   /// more ways to draw for loops with the same effect
   // for(int i = 0; i < balls.length; i++){
@@ -53,6 +58,7 @@ class Ball
   float r;
   float g;
   float b;
+  int size;
 
   Ball(){
     pos = new PVector(width/2, height/2);
@@ -60,12 +66,17 @@ class Ball
     r = random(255);
     g = random(255);
     b = random(255);
+    size = 20;
   }
 
-  void move(){
+  void move(Planet planet){
     pos.y += (velDir.y * frameTime);
     pos.x += (velDir.x * frameTime);
-    velDir.y += (a * frameTime);
+    //velDir.y += (a * frameTime);
+    velDir.x += ((planet.pos.x - pos.x)* (0.1*planet.size) *frameTime)
+    /(abs(planet.pos.x - pos.x))*(abs(planet.pos.x - pos.x));
+    velDir.y += ((planet.pos.y - pos.y)* (0.1*planet.size) *frameTime)
+    /(abs(planet.pos.y - pos.y))*(abs(planet.pos.y - pos.y));
   }
 
   void bounce(){
@@ -86,7 +97,35 @@ class Ball
     stroke(0);
     strokeWeight(2);
     fill(r, g, b);
-    ellipse(pos.x, pos.y, 20,20);
+    ellipse(pos.x, pos.y, size,size);
   }
+
+}
+
+class Planet{
+  PVector pos;
+  float r, g, b;
+  int size;
+
+    Planet(){
+      pos = new PVector(width/2, height/2);
+      r = random(255);
+      g = random(255);
+      b = random(255);
+      size = 70;
+
+    }
+
+    void move(){
+      pos.x = mouseX;
+      pos.y = mouseY;
+    }
+
+    void display(){
+      stroke(0);
+      strokeWeight(2);
+      fill(r, g, b);
+      ellipse(pos.x, pos.y, size,size);
+    }
 
 }
