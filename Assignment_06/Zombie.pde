@@ -4,6 +4,7 @@ class Zombie extends Human {
     velDir.x /= 2;
     velDir.y /= 2;
     zombie = 1;
+    size = 20;
   }
 
   Zombie(Human victim){
@@ -20,9 +21,15 @@ class Zombie extends Human {
     ellipse(pos.x,pos.y,size,size);
     strokeWeight(3);
     stroke(120,200,120);
-    line(pos.x, pos.y, pos.x + size * (velDir.x + 1),
-      pos.y + size * (velDir.y + 1));
-    line(pos.x, pos.y, pos.x - size * (velDir.x - 1),
-      pos.y + size * (velDir.y - 1));
+
+    //this shit is so messy, but it works
+    line(pos.x - (4*velDir.y),
+        pos.y + (4*velDir.x),
+        (pos.x - (4*velDir.y)) + (velDir.x * size/2),
+        (pos.y + (4*velDir.x)) + (velDir.y * size/2));
+    line(pos.x + (4*velDir.y),
+        pos.y - (4*velDir.x),
+        (pos.x + (4*velDir.y)) + (velDir.x * size/2),
+        (pos.y - (4*velDir.x)) + (velDir.y * size/2));
   }
 }
