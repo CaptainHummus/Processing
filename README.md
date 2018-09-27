@@ -6,5 +6,5 @@ Assignments:
 - [Assignment 3](Assignment_03/Assignment_03.pde) - [(Assignment 3 complete)](Assignment_03B/Assignment_03B.pde)
 - [Assignment 4](Assignment_04/Assignment_04.pde) - [(Assignment 4B)](Assignment_04B/Assignment_04B.pde)
 - [Assignment 5](Assignment_05/Assignment_05.pde) - [(Assignment 5B)](Assignment_05B/Assignment_05B.pde)
-
+- [Assignment 6](Assignment_06/Assignment_06.pde)
 
