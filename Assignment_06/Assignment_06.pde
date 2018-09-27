@@ -26,6 +26,5 @@ void draw(){
     text(str1, width/2 - textWidth(str1)/2, height/2);
     text(str2, width/2 - textWidth(str2)/2, height/2 + 40);
     noLoop();
-
   }
 }
