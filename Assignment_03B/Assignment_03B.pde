@@ -22,7 +22,26 @@ void draw()
   sineWave();
   cosWave();
   tube();
+  spirals();
   frame++;
+}
+
+void spirals()
+{
+  for(int i = 0; i < numberOfPoints; i++) {
+    float x = (width/2 + sin(evenDivide * i + frame *speedMultiplier2)* 5*i);
+    float y = (height/2 + cos(evenDivide * i + frame * speedMultiplier2) * 5*i);
+
+    colorGetter(speedMultiplier2, i);
+    point(x, y);
+  }
+  for(int i = 0; i < numberOfPoints; i++) {
+    float y = (width/2 + sin(evenDivide * i + frame *(2* speedMultiplier2))* 5*i);
+    float x = (height/2 + cos(evenDivide * i + frame *(2* speedMultiplier2)) * 5*i);
+
+    colorGetter(speedMultiplier2, i);
+    point(x, y);
+  }
 }
 
 void circle()
