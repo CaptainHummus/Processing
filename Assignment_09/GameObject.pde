@@ -3,6 +3,7 @@ public class GameObject {
   float x;
   float y;
   float size;
+  int unitLives;
 
   boolean alive = false;
 
@@ -10,10 +11,11 @@ public class GameObject {
     this.x = x;
     this.y = y;
     this.size = size;
+    unitLives = 1;
   }
 
-  void update(int unitDies){
-    if(unitDies == 1){
+  void update(){
+    if(unitLives == 0){
       alive = false;
     }
     else {

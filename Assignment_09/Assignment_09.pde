@@ -5,9 +5,9 @@ int numberOfRows;
 int fillPercentage = 15;
 
 void setup() {
-	size(512, 512);
+	size(1000, 1000);
 	ellipseMode(LEFT);
-	frameRate(10);
+	frameRate(144);
 
 	numberOfColumns = (int)Math.floor(width/cellSize);
 	numberOfRows = (int)Math.floor(height/cellSize);
@@ -32,40 +32,47 @@ void draw() {
 	for (int y = 0; y < numberOfRows; ++y) {
 		for (int x = 0; x < numberOfColumns; ++x) {
 			cells[x][y].draw();
-      if (cells[x][y].x != 0 && cells[x][y].x < (numberOfRows*cellSize)-10){
-        if (cells[x][y].y != 0 && cells[x][y].y < (numberOfColumns*cellSize)-10){
-          cells[x][y].update(neighborCheck(x,y));
+			neighborCheck(x,y);
 
-        }
-      }
+
 		}
 	}
+	for (int y = 0; y < numberOfRows; ++y) {
+		for (int x = 0; x < numberOfColumns; ++x) {
+			cells[x][y].update();
+		}
+	}
+
 }
 
-int neighborCheck(int x, int y){
+void neighborCheck(int x, int y){
   int livingNeighbors = 0;
 
   if(cells[x][y].alive){
     livingNeighbors--;
   }
+if (cells[x][y].x != 0 && cells[x][y].x < (numberOfRows*cellSize)-10){
 
+}
   for(int a = -1; a < 2; a++){
     for(int b = -1; b < 2; b++){
-      if(cells[x+a][y+b].alive){
+      if(x+a > 0 && x+a < numberOfRows &&
+				y+b > 0 && y+b < numberOfColumns && cells[x+a][y+b].alive){
         livingNeighbors++;
       }
     }
   }
-  if(livingNeighbors > 3){
-    return 1;
+  if(livingNeighbors > 3 || livingNeighbors < 2){
+    cells[x][y].unitLives = 0;
   }
-  else if(livingNeighbors < 2){
-    return 1;
+  else if(livingNeighbors == 3 || livingNeighbors == 2 && cells[x][y].alive){
+    cells[x][y].unitLives = 1;
   }
-  else if(livingNeighbors == 3 && cells[x][y].alive == false){
-    return 0;
-  }
-  else {
+}
 
-  }
+void mousePressed(){
+	loop();
+}
+void mouseReleased(){
+	noLoop();
 }
