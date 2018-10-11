@@ -3,7 +3,8 @@ public class GameObject {
   float x;
   float y;
   float size;
-  int unitShade;
+  int lifeShade;
+  int deathShade;
 
   boolean alive = false;
   boolean aliveNext = false;
@@ -12,37 +13,36 @@ public class GameObject {
     this.x = x;
     this.y = y;
     this.size = size;
-    unitShade = 0;
+    deathShade = 10;
+    lifeShade = 0;
   }
 
   void update(){
     if(aliveNext){
       alive = true;
+      deathShade = 0;
     }
     else {
       alive = false;
+      lifeShade = 0;
     }
   }
 
   void draw(){
-
-    if (alive && unitShade == 1) {
-      fill(0,80,100);
-      rect(x, y, size, size);
-    }
-    else if (alive && unitShade > 10) {
+    if (alive && lifeShade > 10) {
       fill(0,100,60);
-      rect(x, y, size, size);
     }
-    else if (alive && unitShade > 1) {
-      fill(0,100+(unitShade*2),100-(unitShade*4));
-      rect(x, y, size, size);
+    else if (alive && lifeShade > 0) {
+      fill(0,90+lifeShade,100-(lifeShade*4));
+      lifeShade++;
     }
-    else if (alive){
-      fill(0,80,100);
-      rect(x, y, size, size);
+    else if (!alive && deathShade > 10){
+      fill(20,100,0);
     }
-
+    else if (!alive && deathShade > 0){
+      fill(0+deathShade*2,100,40 -(deathShade*4));
+      deathShade++;
+    }
+    rect(x, y, size, size);
   }
-
 }

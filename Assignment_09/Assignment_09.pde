@@ -4,6 +4,7 @@ int numberOfColumns;
 int numberOfRows;
 int fillPercentage = 15;
 int fps = 10;
+boolean loopCheck = true;
 
 void setup() {
 	size(1000, 1000);
@@ -65,20 +66,25 @@ if (cells[x][y].x != 0 && cells[x][y].x < (numberOfRows*cellSize)-10){
   }
   if(livingNeighbors > 3 || livingNeighbors < 2){
 		cells[x][y].aliveNext = false;
-    cells[x][y].unitShade--;
   }
   else if(livingNeighbors == 3 || livingNeighbors == 2 && cells[x][y].alive){
 		cells[x][y].aliveNext = true;
-    cells[x][y].unitShade++;
   }
 }
 
-// void mousePressed(){
-// 	loop();
-// }
-// void mouseReleased(){
-// 	noLoop();
-// }
+void mousePressed(){
+	if(loopCheck == true){
+		noLoop();
+		loopCheck = false;
+		return;
+	}
+	if(loopCheck == false){
+		loop();
+		loopCheck = true;
+		return;
+	}
+}
+
 void keyPressed(){
 	if(key == CODED){
 		if (keyCode == UP && fps != 144){
