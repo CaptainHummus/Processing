@@ -5,9 +5,10 @@ int numberOfRows;
 int fillPercentage = 15;
 int fps = 10;
 boolean loopCheck = true;
+int generation = 0;
 
 void setup() {
-	size(1000, 1000);
+	size(900, 900);
 	colorMode(HSB, 100);
 	stroke(0,0);
 
@@ -43,7 +44,8 @@ void draw() {
 			cells[x][y].update();
 		}
 	}
-
+	text("Generation: " + generation,width/2,height/2);
+	generation++;
 }
 
 void neighborCheck(int x, int y){
@@ -52,9 +54,7 @@ void neighborCheck(int x, int y){
   if(cells[x][y].alive){
     livingNeighbors--;
   }
-if (cells[x][y].x != 0 && cells[x][y].x < (numberOfRows*cellSize)-10){
 
-}
   for(int a = -1; a < 2; a++){
     for(int b = -1; b < 2; b++){
       if(x+a > 0 && x+a < numberOfRows &&

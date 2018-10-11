@@ -32,14 +32,14 @@ public class GameObject {
     if (alive && lifeShade > 10) {
       fill(0,100,60);
     }
-    else if (alive && lifeShade > 0) {
+    else if (alive && lifeShade >= 0) {
       fill(0,90+lifeShade,100-(lifeShade*4));
       lifeShade++;
     }
     else if (!alive && deathShade > 10){
       fill(20,100,0);
     }
-    else if (!alive && deathShade > 0){
+    else if (!alive && deathShade >= 0){
       fill(0+deathShade*2,100,40 -(deathShade*4));
       deathShade++;
     }
