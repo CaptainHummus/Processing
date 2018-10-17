@@ -10,8 +10,8 @@ public class GameObject {
   boolean aliveNext = false;
 
   public GameObject (float x, float y, float size){
-    this.x = x;
-    this.y = y;
+    this.x = x * size;
+    this.y = y * size;
     this.size = size;
     deathShade = 10;
     lifeShade = 0;
@@ -20,10 +20,12 @@ public class GameObject {
   void update(){
     if(aliveNext){
       alive = true;
+      lifeShade++;
       deathShade = 0;
     }
     else {
       alive = false;
+      deathShade++;
       lifeShade = 0;
     }
   }
@@ -34,14 +36,12 @@ public class GameObject {
     }
     else if (alive && lifeShade >= 0) {
       fill(0,90+lifeShade,100-(lifeShade*4));
-      lifeShade++;
     }
     else if (!alive && deathShade > 10){
-      fill(20,100,0);
+      fill(30,100,0);
     }
     else if (!alive && deathShade >= 0){
       fill(0+deathShade*2,100,40 -(deathShade*4));
-      deathShade++;
     }
     rect(x, y, size, size);
   }
