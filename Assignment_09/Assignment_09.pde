@@ -1,12 +1,15 @@
 GameObject cells[][];
-float cellSize = 6;
+GameObject cellsStableSave[][];
+float cellSize = 10;
 int numberOfColumns;
 int numberOfRows;
-int fillPercentage = 15;
+int numberofCells;
+int stableCellCounter = 0;
+int fillPercentage = 10;
 boolean loopCheck = true;
 int generation = 0;
-int animationCooldown = 10;
-int animationCounter = 0;
+float animationCooldown = 6;
+float animationCounter = 0;
 
 void setup() {
 	size(700, 700);
@@ -14,27 +17,32 @@ void setup() {
 	stroke(0,0);
 	numberOfColumns = (int)Math.floor(width/cellSize);
 	numberOfRows = (int)Math.floor(height/cellSize);
+	numberofCells = numberOfRows * numberOfColumns;
 	cells = new GameObject[numberOfColumns][numberOfRows];
+	cellsStableSave = new GameObject[numberOfColumns][numberOfRows];
 	gridCheck("initState");
 }
 
 void draw() {
-	frameRate(50);
+	frameRate(60);
   background(0);
 	gridCheck("drawCells");
-	if (animationCounter >= animationCooldown){
+	if (animationCounter % animationCooldown == 0){
 		gridCheck("checkNeighbors");
 		gridCheck("updateCells");
 		generation++;
 		animationCounter = 0;
+		if (generation % 6 == 0){
+			gridCheck("compareGrid");
+		}
 	}
-
+			stableCellCounter = 0;
 
 	textPrinter(generation);
-	animationCounter++;
-	println("fps: " + frameRate);
-	println("Counter: " + animationCounter);
-	println("Cooldown: " + animationCooldown);
+	animationCounter += 0.5;
+	// println("fps: " + frameRate);
+	// println("Counter: " + animationCounter);
+	// println("Cooldown: " + animationCooldown);
 }
 
 void gridCheck(String check){
@@ -42,6 +50,7 @@ void gridCheck(String check){
 		for (int x = 0; x < numberOfColumns; ++x) {
 			if (check == "initState"){
 				cells[x][y] = new GameObject(x, y, cellSize);
+				cellsStableSave[x][y] = new GameObject(x, y, cellSize);
 				if (random(0, 100) < fillPercentage) {
 					cells[x][y].alive = true;
 				}
@@ -56,6 +65,23 @@ void gridCheck(String check){
 			else if(check == "updateCells"){
 				cells[x][y].update();
 			}
+			else if(check == "compareGrid"){
+				if (cellsStableSave[x][y].alive && cells[x][y].alive){
+					stableCellCounter++;
+					if(stableCellCounter == numberofCells){
+						println("stable");
+					}
+					println(stableCellCounter);
+				}
+				else if (!cellsStableSave[x][y].alive && !cells[x][y].alive){
+					stableCellCounter++;
+					if(stableCellCounter == numberofCells){
+						println("stable");
+					}
+					println(stableCellCounter);
+				}
+				cellsStableSave[x][y] = cells[x][y];
+			}
 		}
 	}
 }
@@ -68,8 +94,8 @@ void neighborCheck(int x, int y){
 			if(deltaX == 0 && deltaY == 0){
 				continue;
 			}
-      if(x+deltaX > 0 && x+deltaX < numberOfRows &&
-				y+deltaY > 0 && y+deltaY < numberOfColumns &&
+      if(x+deltaX >= 0 && x+deltaX < numberOfRows &&
+				y+deltaY >= 0 && y+deltaY < numberOfColumns &&
 				cells[x + deltaX][y + deltaY].alive){
         livingNeighbors++;
       }
@@ -105,11 +131,11 @@ void mousePressed(){
 
 void keyPressed(){
 	if(key == CODED){
-		if (keyCode == DOWN && animationCooldown != 50){
-			animationCooldown++;
+		if (keyCode == DOWN && animationCooldown != 30){
+			animationCooldown+= 0.5;
 		}
-		if (keyCode == UP && animationCooldown != 1){
-			animationCooldown--;
+		if (keyCode == UP && animationCooldown != 0.5){
+			animationCooldown-= 0.5;
 		}
 	}
 }
