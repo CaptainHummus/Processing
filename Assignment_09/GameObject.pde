@@ -5,6 +5,7 @@ public class GameObject {
   float size;
   int lifeShade;
   int deathShade;
+  int livingNeighbors;
 
   boolean alive = false;
   boolean aliveNext = false;
@@ -15,6 +16,7 @@ public class GameObject {
     this.size = size;
     deathShade = 10;
     lifeShade = 0;
+    livingNeighbors = 0;
   }
 
   void update(){
